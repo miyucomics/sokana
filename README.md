@@ -1,0 +1,19 @@
+## Sokana
+_By this art may you contemplate my soul._
+
+_tan tenpo ni la sina ken kama sona e kon mi._
+
+---
+Hi! Welcome to sokana! This is my interpretation of an esolang programming magic mod similar to Hexcasting or Trickster, both of which I have played and greatly enjoyed. One of its defining features is that it uses toki pona for all the incantations. It will not be necessary knowledge to use this mod, but being able to look at `weka misikeke` and understanding it does some kind of warding or cleansing of status effects will be extremely helpful.
+
+And to follow up on that, sokana is _extremely_ difficult to learn but easy to use. Most of its difficulty is purely conceptual; for example `tawa pini` is the teleportation spell of the mod. It teleports you using your local headspace, meaning (0, 0, 1) teleports you forwards one block in the direction you are looking, (1, 0, 0) teleports you to your right, and (0, 1, 0) teleports you one block up projecting the top of your head. sokana will give you no pattern that translates world or even local position into headspace; you have to learn change-of-basis matrices. While it is documented in English, you will also find occasional bits of toki pona in the text. These are warnings or tips for using the spells, for example telling you that you can teleport a boat with two entities in it to teleport two entities for the cost of ones. The sokana gods are nice like that ;p
+
+For the enlightened, here are some buzzwords to generate excitement: sokana uses a custom concatentative, stack-based interpreted language in the spirit of Forth, with a unique _scrollable_ stack and _mu-iota_ mechanic that allows a stack-based language to have variable argument numbers in a highly expressive and elegant way.
+
+Ending on some fun facts!
+- sokana uses only incantations that respect toki pona word construction rules, it's entirely pronounable! You can speak out any spell and someone listening will be able to exactly transcribe it. There may be an addon in the feature that connects to your microphone and lets you cast that way.
+- sokana requires no special items like a staff to do magic and in fact, it strays away from adding items at all. You do magic via a special meditation screen and if you want to make a magical item, you take an ordinary item and "charm" it with a spell. Charmed items can overwrite the item's usual left/right click behavior with casting their spell. Or with armor, sokana does not add its own armor but there is a spell that lets you make amethyst spikes erupt from your currently worn armor which gives you light Thorns and makes you deal contact damage.
+- there are no exceptions or errors in sokana! If an operation fails, it just pushes an error datatype to the stack and it will continue to bubble through if not properly dealt with. There is no try-catch, you just check after a potentially failing operation if the stack has an error, and if you neglect to check and treat it as though it is a number, that failure creates its own error and spirals to the end. If error iotas are left on the stack by the end of the spell, the gods impose punishments for each error like setting you on fire.
+
+### Credits
+Without [Hexcasting](https://github.com/FallingColors/HexMod/) and [Trickster](https://github.com/enjarai/trickster/)'s MIT-licensed source code, this passion project never would have made it off the ground. The implementations and design concepts were pivotal to helping me create the foundations of the spell engine that powers all of sokana, and I have greatly loved and enjoyed both mods which led me to make sokana as my own interpretation of the niche programming magic field.
