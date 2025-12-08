@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "miyucomics.sokana.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

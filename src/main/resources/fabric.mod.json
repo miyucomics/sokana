@@ -1,0 +1,51 @@
+{
+	"schemaVersion": 1,
+	"id": "sokana",
+	"version": "${version}",
+	"name": "Sokana",
+	"description": "A toki pona programming magic mod!",
+	"authors": [
+		"miyucomics"
+	],
+	"contact": {
+		"homepage": "https://github.com/miyucomics/sokana",
+		"sources": "https://github.com/miyucomics/sokana"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/sokana/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "miyucomics.sokana.SokanaMain",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "miyucomics.sokana.SokanaClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "miyucomics.sokana.SokanaDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"sokana.mixins.json",
+		{
+			"config": "sokana.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.1",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}
