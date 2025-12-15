@@ -2,11 +2,12 @@ package miyucomics.sokana.engine.actions
 
 import miyucomics.sokana.engine.atoms.Atom
 import miyucomics.sokana.engine.parsers.StackParser
+import net.minecraft.server.world.ServerWorld
 
 class Signature(val reversedParsers: List<StackParser<*>>) {
 	constructor(vararg parsers: StackParser<*>) : this(parsers.toList().reversed())
 
-	fun tryParseStack(stack: List<Atom>): SignatureParse? {
+	fun tryParseStack(stack: List<Atom>, world: ServerWorld): SignatureParse? {
 		var consumedAtoms = 0
 		var currentIdx = stack.size - 1
 		val spellArguments = mutableListOf<Any>()
@@ -14,7 +15,7 @@ class Signature(val reversedParsers: List<StackParser<*>>) {
 		for (parser in reversedParsers) {
 			if (currentIdx < 0)
 				return null
-			val result = parser.parse(stack, currentIdx) ?: return null
+			val result = parser.parse(stack, currentIdx, world) ?: return null
 			spellArguments.add(0, result.value!!)
 			consumedAtoms += result.consumed
 			currentIdx -= result.consumed
