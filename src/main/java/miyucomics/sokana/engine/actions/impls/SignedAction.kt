@@ -18,7 +18,7 @@ open class SignedAction : Action() {
 
 	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): CastResult {
 		handlers.forEach { (signature, function) ->
-			val spellArguments = signature.tryParseStack(engine.image.stack)
+			val spellArguments = signature.tryParseStack(engine.image.stack, world)
 			if (spellArguments != null) {
 				val stack = engine.image.stack.dropLast(spellArguments.consumed)
 				return CastResult(engine.image.copy(stack = stack.plus(function(engine, spellArguments.values))), continuation)

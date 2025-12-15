@@ -4,9 +4,10 @@ import miyucomics.sokana.engine.atoms.Atom
 import miyucomics.sokana.engine.atoms.types.MuAtom
 import miyucomics.sokana.engine.parsers.ParseResult
 import miyucomics.sokana.engine.parsers.StackParser
+import net.minecraft.server.world.ServerWorld
 
 class SequenceParser<T>(val elementParser: StackParser<T>) : StackParser<List<T>> {
-	override fun parse(stack: List<Atom>, startIdx: Int): ParseResult<List<T>>? {
+	override fun parse(stack: List<Atom>, startIdx: Int, world: ServerWorld): ParseResult<List<T>>? {
 		if (startIdx > 0) {
 			// Find mu boundary
 			var muIdx = startIdx - 1
@@ -18,7 +19,7 @@ class SequenceParser<T>(val elementParser: StackParser<T>) : StackParser<List<T>
 				val results = mutableListOf<T>()
 				var i = actualStart
 				while (i <= startIdx) {
-					val result = elementParser.parse(stack, i) ?: return null
+					val result = elementParser.parse(stack, i, world) ?: return null
 					results.add(result.value)
 					i += result.consumed
 				}
@@ -29,7 +30,7 @@ class SequenceParser<T>(val elementParser: StackParser<T>) : StackParser<List<T>
 
 		// No mu - consume just one element
 		if (startIdx < 0) return null
-		val result = elementParser.parse(stack, startIdx) ?: return null
+		val result = elementParser.parse(stack, startIdx, world) ?: return null
 		return ParseResult(listOf(result.value), result.consumed)
 	}
 }
