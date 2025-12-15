@@ -1,10 +1,12 @@
 package miyucomics.sokana.engine.actions
 
 import miyucomics.sokana.operators.OpPrint
+import miyucomics.sokana.operators.getters.OpBlockGetter
 import miyucomics.sokana.operators.math.OpAdd
 import miyucomics.sokana.operators.math.OpLength
 import miyucomics.sokana.operators.math.OpTwo
 import miyucomics.sokana.operators.meta.OpEval
+import miyucomics.sokana.utils.asActionResult
 
 object ActionRegistry {
 	val lookup = hashMapOf<String, Action>()
@@ -16,6 +18,10 @@ object ActionRegistry {
 		register("tu", OpTwo)
 		register("sin", OpAdd)
 		register("enko nanpa", OpLength)
+
+		register("leko telo", OpBlockGetter { it.slipperiness.asActionResult() })
+		register("leko wawa", OpBlockGetter { it.blastResistance.asActionResult() })
+		register("leko kiwen", OpBlockGetter { it.hardness.asActionResult() })
 	}
 
 	fun register(incantation: String, action: Action) {
