@@ -3,6 +3,7 @@ package miyucomics.sokana.items
 import miyucomics.sokana.engine.atoms.types.StringAtom
 import miyucomics.sokana.engine.casting.SpellEngine
 import miyucomics.sokana.engine.casting.SpellImage
+import miyucomics.sokana.engine.environments.PlayerEnvironment
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -16,8 +17,10 @@ class DummyItem : Item(Settings()) {
 		if (world.isClient)
 			return TypedActionResult.success(user.getStackInHand(hand))
 
-		val engine = SpellEngine(SpellImage(stack = listOf(), stash = listOf()), world as ServerWorld)
-		engine.executeAtoms(listOf("tu", "tu", "sin").map(::StringAtom))
+		val image = SpellImage(stack = listOf(), stash = listOf())
+		val env = PlayerEnvironment(world as ServerWorld, user)
+		val engine = SpellEngine(image, env)
+		engine.executeAtoms(listOf("tu", "tu", "sin", "toki").map(::StringAtom))
 
 		return super.use(world, user, hand)
 	}

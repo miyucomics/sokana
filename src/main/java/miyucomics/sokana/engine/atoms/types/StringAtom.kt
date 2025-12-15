@@ -11,8 +11,12 @@ import miyucomics.sokana.engine.errors.NotAnIncantation
 import miyucomics.sokana.engine.parsers.StackParser
 import miyucomics.sokana.engine.parsers.impls.AtomParser
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.text.Text
+import net.minecraft.util.Formatting
 
 class StringAtom(val string: String) : Atom(TYPE) {
+	override fun display(): Text = Text.literal(string).formatted(Formatting.GRAY)
+
 	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): AtomResult {
 		val action = ActionRegistry.getAction(this.string) ?: throw NotAnIncantation()
 		return action.execute(engine, world, continuation)

@@ -1,5 +1,6 @@
 package miyucomics.sokana.engine.actions
 
+import miyucomics.sokana.operators.OpPrint
 import miyucomics.sokana.operators.math.OpAdd
 import miyucomics.sokana.operators.math.OpLength
 import miyucomics.sokana.operators.math.OpTwo
@@ -9,6 +10,7 @@ object ActionRegistry {
 	val lookup = hashMapOf<String, Action>()
 
 	fun init() {
+		register("toki", OpPrint)
 		register("usawi", OpEval)
 
 		register("tu", OpTwo)
