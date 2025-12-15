@@ -1,5 +1,7 @@
 {
 	"errors.sokana.atom_can_not_execute": "The atom could not be executed.",
 	"errors.sokana.no_signatures_matched": "This incantation could not apply to the given inputs.",
-	"errors.sokana.not_incantation": "This string was not an incantation"
+	"errors.sokana.not_incantation": "This string was not an incantation.",
+	"errors.sokana.entity_out_of_range": "The given entity was out of range.",
+	"errors.sokana.vector_out_of_range": "The given vector was out of range."
 }

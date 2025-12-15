@@ -14,6 +14,10 @@ import net.minecraft.util.math.Vec3d
 class OpBlockGetter(val getter: (Block) -> List<Atom>) : SignedAction() {
 	init {
 		addSignature(Signature(RegistryParser(Registries.BLOCK))) { _, list -> getter(list.arg<Block>(0)) }
-		addSignature(Signature(Vec3dAtom.TYPE.getParser())) { engine, list -> getter(engine.env.world.getBlockState(BlockPos.ofFloored(list.arg<Vec3d>(0))).block) }
+		addSignature(Signature(Vec3dAtom.TYPE.getParser())) { engine, list ->
+			val targetPos = list.arg<Vec3d>(0)
+			engine.env.assertVectorInRange(targetPos)
+			getter(engine.env.world.getBlockState(BlockPos.ofFloored(targetPos)).block)
+		}
 	}
 }

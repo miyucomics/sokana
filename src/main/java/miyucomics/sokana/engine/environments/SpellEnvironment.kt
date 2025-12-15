@@ -1,5 +1,7 @@
 package miyucomics.sokana.engine.environments
 
+import miyucomics.sokana.engine.errors.EntityOutOfRange
+import miyucomics.sokana.engine.errors.VectorOutOfRange
 import net.minecraft.entity.Entity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
@@ -25,4 +27,14 @@ abstract class SpellEnvironment {
 	abstract fun getAvailableStacks(): List<ItemStack>
 
 	abstract fun sendMessage(text: Text)
+
+	fun assertVectorInRange(vector: Vec3d) {
+		if (!isVectorInRange(vector))
+			throw VectorOutOfRange()
+	}
+
+	fun assertEntityInRange(entity: Entity) {
+		if (!isEntityInRange(entity))
+			throw EntityOutOfRange()
+	}
 }
