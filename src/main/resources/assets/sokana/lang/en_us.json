@@ -1,3 +1,5 @@
 {
-	"errors.sokana.no_signatures_matched": "This incantation could not apply to the given inputs."
+	"errors.sokana.atom_can_not_execute": "The atom could not be executed.",
+	"errors.sokana.no_signatures_matched": "This incantation could not apply to the given inputs.",
+	"errors.sokana.not_incantation": "This string was not an incantation"
 }
