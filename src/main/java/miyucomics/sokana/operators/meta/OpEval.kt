@@ -1,11 +1,13 @@
 package miyucomics.sokana.operators.meta
 
 import miyucomics.sokana.engine.actions.Action
+import miyucomics.sokana.engine.atoms.types.ListAtom
 import miyucomics.sokana.engine.atoms.types.StringAtom
 import miyucomics.sokana.engine.casting.CastResult
 import miyucomics.sokana.engine.casting.SpellEngine
 import miyucomics.sokana.engine.continuations.SpellContinuation
 import miyucomics.sokana.engine.continuations.types.EvalFrame
+import miyucomics.sokana.engine.continuations.types.FinishEvalFrame
 import miyucomics.sokana.engine.errors.NoSignaturesMatched
 import net.minecraft.server.world.ServerWorld
 
@@ -16,7 +18,7 @@ object OpEval : Action() {
 			throw NoSignaturesMatched()
 		val newContinuation = when (val atom = stack.last()) {
 			is StringAtom -> continuation.pushFrame(EvalFrame(listOf(atom)))
-//			is StringAtom -> continuation.pushFrame(FinishEvalFrame).pushFrame(EvalFrame(listOf(atom)))
+			is ListAtom -> continuation.pushFrame(FinishEvalFrame).pushFrame(EvalFrame(atom.contents))
 			else -> throw NoSignaturesMatched()
 		}
 		return CastResult(engine.image.copy(stack = stack.dropLast(1)), newContinuation)

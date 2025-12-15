@@ -14,6 +14,7 @@ object AtomTypes {
 		register("mu", MuType)
 		register("double", DoubleAtom.TYPE)
 		register("identifier", IdentifierAtom.TYPE)
+		register("list", ListAtom.TYPE)
 		register("string", StringAtom.TYPE)
 		register("vec3d", Vec3dAtom.TYPE)
 	}
