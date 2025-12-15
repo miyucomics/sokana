@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
-class ItemStackAtom(val stack: ItemStack) : Atom(TYPE) {
+data class ItemStackAtom(val stack: ItemStack) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(stack.toString()).formatted(Formatting.GREEN)
 
 	companion object {

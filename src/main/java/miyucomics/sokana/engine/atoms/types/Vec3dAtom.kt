@@ -9,7 +9,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.Vec3d
 
-class Vec3dAtom(val vector: Vec3d) : Atom(TYPE) {
+data class Vec3dAtom(val vector: Vec3d) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(vector.toString()).formatted(Formatting.GREEN)
 
 	companion object {

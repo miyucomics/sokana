@@ -14,7 +14,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
-class StringAtom(val string: String) : Atom(TYPE) {
+data class StringAtom(val string: String) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(string).formatted(Formatting.GRAY)
 
 	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): CastResult {

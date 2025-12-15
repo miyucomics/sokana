@@ -7,7 +7,7 @@ import miyucomics.sokana.engine.parsers.StackParser
 import miyucomics.sokana.engine.parsers.impls.AtomParser
 import net.minecraft.text.Text
 
-class ListAtom(val contents: List<Atom>) : Atom(TYPE) {
+data class ListAtom(val contents: List<Atom>) : Atom(TYPE) {
 	override fun display(): Text {
 		val display = Text.literal("[")
 		val lastIndex = contents.size - 1
