@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec3d
 
 fun Double.asActionResult() = listOf(DoubleAtom(this))
+fun Float.asActionResult() = listOf(DoubleAtom(this.toDouble()))
 fun Identifier.asActionResult() = listOf(IdentifierAtom(this))
 fun Int.asActionResult() = listOf(DoubleAtom(this.toDouble()))
 fun List<Atom>.asActionResult() = listOf(ListAtom(this))
