@@ -3,7 +3,7 @@ package miyucomics.sokana.engine.actions.impls
 import miyucomics.sokana.engine.actions.Action
 import miyucomics.sokana.engine.actions.Signature
 import miyucomics.sokana.engine.atoms.Atom
-import miyucomics.sokana.engine.casting.AtomResult
+import miyucomics.sokana.engine.casting.CastResult
 import miyucomics.sokana.engine.casting.SpellEngine
 import miyucomics.sokana.engine.continuations.SpellContinuation
 import miyucomics.sokana.engine.errors.NoSignaturesMatched
@@ -16,12 +16,12 @@ open class SignedAction : Action() {
 		this.handlers.add(signature to handler)
 	}
 
-	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): AtomResult {
+	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): CastResult {
 		handlers.forEach { (signature, function) ->
 			val spellArguments = signature.tryParseStack(engine.image.stack)
 			if (spellArguments != null) {
 				val stack = engine.image.stack.dropLast(spellArguments.consumed)
-				return AtomResult(engine.image.copy(stack = stack.plus(function(engine, spellArguments.values))), continuation)
+				return CastResult(engine.image.copy(stack = stack.plus(function(engine, spellArguments.values))), continuation)
 			}
 		}
 		throw NoSignaturesMatched()
