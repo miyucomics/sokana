@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec
 import miyucomics.sokana.engine.actions.ActionRegistry
 import miyucomics.sokana.engine.atoms.Atom
 import miyucomics.sokana.engine.atoms.AtomType
-import miyucomics.sokana.engine.casting.AtomResult
+import miyucomics.sokana.engine.casting.CastResult
 import miyucomics.sokana.engine.casting.SpellEngine
 import miyucomics.sokana.engine.continuations.SpellContinuation
 import miyucomics.sokana.engine.errors.NotAnIncantation
@@ -17,7 +17,7 @@ import net.minecraft.util.Formatting
 class StringAtom(val string: String) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(string).formatted(Formatting.GRAY)
 
-	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): AtomResult {
+	override fun execute(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): CastResult {
 		val action = ActionRegistry.getAction(this.string) ?: throw NotAnIncantation()
 		return action.execute(engine, world, continuation)
 	}
