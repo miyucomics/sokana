@@ -14,13 +14,17 @@ import net.minecraft.server.world.ServerWorld
 class EvalFrame(val atoms: List<Atom>) : ContinuationFrame(TYPE) {
 	override fun breakThrough() = true
 	override fun step(engine: SpellEngine, world: ServerWorld, continuation: SpellContinuation): CastResult {
-		if (atoms.isNotEmpty()) {
-			var newContinuation = continuation.pushFrame(EvalFrame(atoms.subList(1, atoms.size)))
-			val result = atoms[0].execute(engine, world, newContinuation)
-			newContinuation = result.continuation
-			return CastResult(result.image, newContinuation)
+		if (atoms.isEmpty())
+			return super.step(engine, world, continuation)
+
+		val remaining = atoms.subList(1, atoms.size)
+		val newContinuation = if (remaining.isNotEmpty()) {
+			continuation.pushFrame(EvalFrame(remaining))
+		} else {
+			continuation // Don't push empty frame, tail-call optimization
 		}
-		return super.step(engine, world, continuation)
+
+		return atoms[0].execute(engine, world, newContinuation)
 	}
 
 	companion object {
