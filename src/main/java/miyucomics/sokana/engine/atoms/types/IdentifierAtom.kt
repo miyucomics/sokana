@@ -9,7 +9,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
 
-class IdentifierAtom(val identifier: Identifier) : Atom(TYPE) {
+data class IdentifierAtom(val identifier: Identifier) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(identifier.toString()).formatted(Formatting.GOLD)
 
 	companion object {

@@ -10,7 +10,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Uuids
 import java.util.*
 
-class EntityAtom(val uuid: UUID) : Atom(TYPE) {
+data class EntityAtom(val uuid: UUID) : Atom(TYPE) {
 	override fun display(): Text = Text.literal("temporary name")
 
 	companion object {

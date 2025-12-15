@@ -8,7 +8,7 @@ import miyucomics.sokana.engine.parsers.impls.AtomParser
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
-class DoubleAtom(val number: Double) : Atom(TYPE) {
+data class DoubleAtom(val number: Double) : Atom(TYPE) {
 	override fun display(): Text = Text.literal(number.toString()).formatted(Formatting.RED)
 
 	companion object {
