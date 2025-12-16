@@ -14,30 +14,34 @@ object ActionRegistry {
 	val lookup = hashMapOf<String, Action>()
 
 	fun init() {
-		register("toki", OpPrint)
-		register("usawi", OpEval)
+		"toki" += OpPrint
+		"usawi" += OpEval
 
-		register("tu", OpConstant { 2.asActionResult() })
-		register("sin", OpAdd)
-		register("weka", OpSubtract)
-		register("enko nanpa", OpLength)
+		"wan" += constant(1.0)
+		"tu" += constant(2.0)
+		"sin" += OpAdd
+		"weka" += OpSubtract
+		"enko nanpa" += OpLength
 
-		register("lawa ala", OpConstant { Vec3d.ZERO.asActionResult() })
-		register("lawa anpa", OpConstant { Vec3d(0.0, -1.0, 0.0).asActionResult() })
-		register("lawa sewi", OpConstant { Vec3d(0.0, 1.0, 0.0).asActionResult() })
-		register("lawa sinpin", OpConstant { Vec3d(0.0, 0.0, -1.0).asActionResult() })
-		register("lawa monsi", OpConstant { Vec3d(0.0, 0.0, 1.0).asActionResult() })
-		register("lawa soto", OpConstant { Vec3d(-1.0, 0.0, 0.0).asActionResult() })
-		register("lawa teje", OpConstant { Vec3d(1.0, 0.0, 0.0).asActionResult() })
+		"lawa ala" += constant(Vec3d.ZERO)
+		"lawa anpa" += constant(Vec3d(0.0, -1.0, 0.0))
+		"lawa sewi" += constant(Vec3d(0.0, 1.0, 0.0))
+		"lawa sinpin" += constant(Vec3d(0.0, 0.0, -1.0))
+		"lawa monsi" += constant(Vec3d(0.0, 0.0, 1.0))
+		"lawa soto" += constant(Vec3d(-1.0, 0.0, 0.0))
+		"lawa teje" += constant(Vec3d(1.0, 0.0, 0.0))
 
-		register("leko telo", OpBlockGetter { it.slipperiness.asActionResult() })
-		register("leko wawa", OpBlockGetter { it.blastResistance.asActionResult() })
-		register("leko kiwen", OpBlockGetter { it.hardness.asActionResult() })
+		"leko telo" += OpBlockGetter { it.slipperiness.asActionResult() }
+		"leko wawa" += OpBlockGetter { it.blastResistance.asActionResult() }
+		"leko kiwen" += OpBlockGetter { it.hardness.asActionResult() }
 	}
 
-	fun register(incantation: String, action: Action) {
-		lookup[incantation] = action
+	private operator fun String.plusAssign(action: Action) {
+		lookup[this] = action
 	}
+
+	private fun constant(value: Double) = OpConstant { value.asActionResult() }
+	private fun constant(vector: Vec3d) = OpConstant { vector.asActionResult() }
 
 	fun getAction(incantation: String) = lookup.get(incantation)
 }
