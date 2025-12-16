@@ -7,6 +7,7 @@ import miyucomics.sokana.operators.math.OpAdd
 import miyucomics.sokana.operators.math.OpLength
 import miyucomics.sokana.operators.math.OpSubtract
 import miyucomics.sokana.operators.meta.OpEval
+import miyucomics.sokana.operators.meta.OpHalt
 import miyucomics.sokana.utils.asActionResult
 import net.minecraft.util.math.Vec3d
 
@@ -16,6 +17,7 @@ object ActionRegistry {
 	fun init() {
 		"toki" += OpPrint
 		"usawi" += OpEval
+		"pake" += OpHalt
 
 		"wan" += constant(1.0)
 		"tu" += constant(2.0)
