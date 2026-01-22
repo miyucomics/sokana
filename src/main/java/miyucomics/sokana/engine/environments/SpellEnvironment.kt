@@ -20,8 +20,8 @@ abstract class SpellEnvironment {
 	abstract fun isVectorInRange(vector: Vec3d): Boolean
 	open fun isEntityInRange(entity: Entity): Boolean = isVectorInRange(entity.eyePos)
 
-	// attempts to extract that amount of mana, returns whether it has succeeded or not
-	abstract fun extractMana(amount: Int): Boolean
+	// attempts to extract that amount of ether, returns whether it has succeeded or not
+	abstract fun extractEther(amount: Int): Boolean
 
 	// gets the "inventory" of the caster, used for spells that take things from inventories
 	abstract fun getAvailableStacks(): List<ItemStack>

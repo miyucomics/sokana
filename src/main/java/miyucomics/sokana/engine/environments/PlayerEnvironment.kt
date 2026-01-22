@@ -11,10 +11,10 @@ class PlayerEnvironment(override val world: ServerWorld, override val caster: Pl
 		return caster.pos.distanceTo(vector) <= 32.0
 	}
 
-	override fun extractMana(amount: Int): Boolean {
-//		val available = getManaFromPlayer(caster)
+	override fun extractEther(amount: Int): Boolean {
+//		val available = getEtherFromPlayer(caster)
 //		if (available < amount) return false
-//		consumeManaFromPlayer(caster, amount)
+//		consumeEtherFromPlayer(caster, amount)
 		return true
 	}
 

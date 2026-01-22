@@ -10,6 +10,9 @@ import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
 
 object SokanaMain : ModInitializer {
+    private const val MOD_ID = "sokana"
+	fun id(path: String): Identifier = Identifier.of(MOD_ID, path)
+
 	override fun onInitialize() {
 		ActionRegistry.init()
 		AtomTypes.init()
@@ -17,7 +20,4 @@ object SokanaMain : ModInitializer {
 
 		Registry.register(Registries.ITEM, id("dummy"), DummyItem())
 	}
-
-    private const val MOD_ID = "sokana"
-	fun id(path: String): Identifier = Identifier.of(MOD_ID, path)
 }
